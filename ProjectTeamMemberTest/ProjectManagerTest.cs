@@ -12,7 +12,7 @@ namespace ProjectTeamMemberTest
         private ProjectManager _projectManager = new ProjectManager();
 
         [Fact]
-        public void SetUp()
+        public void Initialization()
         {
             _projectManager = new ProjectManager();
         }
@@ -53,9 +53,13 @@ namespace ProjectTeamMemberTest
             var member = new TeamMember("Maria Stelmah", 1);
             _projectManager.AddTeamMember("TA-22", member);
 
+            var members = _projectManager.GetTeamMembers("TA-22");
+
+            Assert.Equal(1, members.Count);
+
             _projectManager.RemoveTeamMember("TA-22", 1);
 
-            var members = _projectManager.GetTeamMembers("TA-22");
+            members = _projectManager.GetTeamMembers("TA-22");
             Assert.Equal(0, members.Count);
         }
 
